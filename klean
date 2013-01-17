@@ -10,16 +10,15 @@ import argparse
 import sys						
 from subprocess import Popen, PIPE
 
+# test that xsel is installed. 
 try:
     p = Popen(['xsel','-pi'], stdin=PIPE)
 except:
-    print "ERROR: xsel could not be started. Ensure it is installed and configured to be called from command line correctly. In Ubuntu this is as simple as 'sudo apt-get install xsel'. For more information see http://www.vergenet.net/~conrad/software/xsel/"
+    print " =============================== ERROR! ===============================\n\n          klean requires an external program called xsel.\n\nPlease ensure it is installed and configured to be called from the command\nline correctly. In Ubuntu this is as simple as 'sudo apt-get install xsel'.\nFor more information see http://www.vergenet.net/~conrad/software/xsel/.\n\nTo check it has been installed correctly, type 'xsel --help' in the terminal.\nYou should be greeted with xsel's help information.\n\nFor further help contact alex@holehouse.org"
     exit(1)
 
 
-
-
-parser = argparse.ArgumentParser(description='Clear an input string of spaces, newlines, tabs etc, and copy to clipboard')
+parser = argparse.ArgumentParser(description='Clear an input string of spaces, newlines, tabs etc, and copy to clipboard. [Contact alex@holehouse.org]')
 parser.add_argument('input', metavar='input',  nargs='+',
                         help='input string (in quotation marks)')
 
