@@ -30,11 +30,7 @@ inputString = args.input[0]
 # get characters we care about 
 charSet = string.printable[:62] # '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
-newstring = ""
-
-for i in inputString:
-    if i in charSet:
-        newstring = newstring+i
+newstring = "".join([x for x in inputString if x in charSet])
         
 
 # finally add the new string to the middle mouse click
