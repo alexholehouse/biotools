@@ -30,8 +30,5 @@ inputString = args.input[0]
 # get characters we care about 
 charSet = string.printable[:62] # '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
-newstring = "".join([x for x in inputString if x in charSet])
-        
-
-# finally add the new string to the middle mouse click
-p.communicate(input=newstring)
+# build and add newstring to the middle mouse click
+p.communicate(input=("".join([x for x in inputString if x in charSet])))
