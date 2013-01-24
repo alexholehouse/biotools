@@ -24,7 +24,7 @@ def __internal_handler(filename, request):
 
     # search for sp| so we only search for swissprot records
     for line in content:
-        if line.find("sp|") > -1:
+        if line.find("sp|") > -1 or line.find("tr|") > -1:
 
             if r == 3:
                 temp = line.split("|")[2]
