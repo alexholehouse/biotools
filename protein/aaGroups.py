@@ -2,7 +2,7 @@
 # aaGroups.py
 #
 # Alex Holehouse (alex@holehouse.org)
-# January 2013
+# Written January 2013
 #
 # A note on using these values
 #
@@ -10,23 +10,40 @@
 # in this file. If you use any of these methods PLEASE cite
 # the source data references appropriatly.
 #
+# CHANGELOG
+# ~ Feb 22 2013
+# Added AA1_TO_3 group 
+#
+
 ###############################################
 
+
+# Amino acids!
+AA = ("A","C","D","E","F","G","H","I","K","L","M","N","P","Q","R","S","T","V","W","Y")
+AA1_TO_3 ={"A":"Ala","C":"Cys","D":"Asp","E":"Glu", "F":"Phe", "G":"Gly", "H":"His","I":"Ile","K":"Lys","L":"Leu","M":"Met","N":"Asn","P":"Pro","Q":"Gln","R":"Arg","S":"Ser","T":"Thr","V":"Val","W":"Trp","Y":"Tyr"}
 
 
 # ------------------------------------------------------------
 # Grouping (based on standard groups)
 #
 
-AA = ("A","C","D","E","F","G","H","I","K","L","M","N","P","Q","R","S","T","V","W","Y")
+
+
 
 
 NEG = ("D","E")
 POS = ("K", "R", "H")
 HYDROPHOBIC = ("A", "V", "L", "I", "M", "F", "W", "P","Y")
-POLAR = ("S","T","N","Q") 
-AROMATIC = ("F","W", "Y")
+POLAR = ("S","T","N","Q","H","C") 
 BULKYHYDROPHOBES = ("L","V","I", "F", "Y", "W", "P") # somewhat subjective...
+NONPOLAR = ("A", "V", "L", "I", "M", "F", "W", "P","Y", "G")
+
+
+# side chain chemistry based grouping
+AROMATIC = ("F","W", "Y")
+AMINES = ("Q", "N")
+HYDROXYLS = ("Y","T", "S")
+
 
 ## ADDING ADDITIONAL GROUPS
 # You (the user) can define additional sets below, e.g.

@@ -454,3 +454,92 @@ def calc_Patterning(seq, G1, G2):
             target1,target2 = target2,target1
             
     return switches
+
+@_convertToUpperCase_sanitize
+def calc_isMotifPresent(seq, motif, polar=False):
+    
+    """
+       Returns true if the $motif in the motif array is found in 
+       $sequence defined in seq, or false if not. 
+
+       $motif should be an array, where each element represents 
+       a position in some motif. Elements can be specific amino 
+       acids ("A","G" etc) or user defined groups ("AG", "MET") 
+       or aaGroups based groups (aaGroups.NEG). A wildcard ("*")
+       will match any possible amino acid. If a match is found 
+       returns true, will only find the first match (i.e. doesn't
+       return the number of matches)
+
+       seq        Protein sequence of interest
+                  [String]  
+
+       motif      array containing the motif of intrerest
+
+       polar      define if we care about motif polarity. i.e.
+                  if false and motif is "AKG" will look for either
+                  "AKG" or "GKA"
+
+    """
+
+    # -----------------------------------------------------------
+    # internal method
+    def matchCheck(seq, motif):
+        progressThroughMotif = 0
+        progressThroughSequence = 0
+
+        while progressThroughSequence < len(seq):
+            #print "SeqPos = " + str(progressThroughSequence)
+            
+        # if we've moved all the way through the motif while
+        # succesfully matching then return true
+            
+            
+            if seq[progressThroughSequence] in motif[progressThroughMotif]:
+                #print "Motif Pos = " + str(progressThroughMotif) + " => " + str(seq[progressThroughSequence]) + " in " + str(motif[progressThroughMotif])
+                progressThroughMotif=progressThroughMotif+1
+                progressThroughSequence = progressThroughSequence+1
+            else:
+                #print "Motif Pos = " + str(progressThroughMotif) + " => " + str(seq[progressThroughSequence]) + " not in " + str(motif[progressThroughMotif])
+                progressThroughSequence = progressThroughSequence-(progressThroughMotif-1) # if 0 progress though motif will add one
+                progressThroughMotif = 0
+
+                
+            #print len(motif)
+            #print progressThroughMotif
+            #print progressThroughSequence
+            #print len(seq)
+            if progressThroughMotif == len(motif):
+                return True
+
+                
+                # note this allows us to restart and test a motif after one possible motif fails
+                # e.g. if we had EEEEAEEE and were looking at EAE
+                #print "is " + str(i) + " in " + str(motif[progressThroughMotif])
+                #if seq[progressThroughSequence] in motif[progressThroughMotif]:
+                #    progressThroughMotif=progressThroughMotif+1
+
+        # if we get here, never found it, False
+        return False
+    # -----------------------------------------------------------
+    
+    
+    #print "============="
+    # replace wildcard with all amino acids
+    k = 0
+    for i in motif:
+        if i == "*":
+            motif[k] = AA
+            
+        motif[k] = [a.upper() for a in motif[k]]
+            
+        k = k+1 
+            
+    # first pass
+    if matchCheck(seq, motif):
+        return True
+
+    if not polar and matchCheck(seq, motif[::-1]):
+        return True
+
+    return False
+

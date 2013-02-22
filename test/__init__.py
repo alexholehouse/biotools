@@ -9,7 +9,5 @@ import os
 sys.path.insert(0,os.path.abspath(__file__+"/../../"))
 sys.path.insert(0,os.path.abspath(__file__+"/../../protein/"))
 
-print os.path.abspath(__file__+"/../../")
-
 import klean_test
 import sequenceTools_test
