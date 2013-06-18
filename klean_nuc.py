@@ -30,7 +30,7 @@ if __name__ == "__main__":
     inputString = args.input[0]
 
     # get characters we care about 
-    charSet = 'acdefghiklmnpqrstvwyACDEFGHIKLMNPQRSTVWY' # amino acids only
+    charSet = 'acgtuACGTU'
 
     # build and add newstring to the middle mouse click
     p.communicate(input=("".join([x for x in inputString if x in charSet])))
